@@ -196,7 +196,11 @@
     let portfolioContainer = select('.skill-portfolio-container');
     if (portfolioContainer) {
       let portfolioIsotope = new Isotope(portfolioContainer, {
-        itemSelector: '.skill-portfolio-item'
+        itemSelector: '.skill-portfolio-item',
+        getSortData: {
+          name: 'strong'
+        },
+        sortBy: 'name'
       });
 
       let portfolioFilters = select('#skill-portfolio-flters li', true);
@@ -209,16 +213,16 @@
         this.classList.add('filter-active');
 
         portfolioIsotope.arrange({
-          filter: this.getAttribute('data-filter')
+          filter: this.getAttribute('data-filter'),
+          sortBy: 'name'
         });
+
         portfolioIsotope.on('arrangeComplete', function() {
           AOS.refresh()
         });
       }, true);
     }
-
-  });
-
+});
   /**
    * Initiate portfolio lightbox 
    */
